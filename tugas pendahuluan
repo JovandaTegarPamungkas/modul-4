@@ -1,0 +1,17 @@
+class Pegawai {
+  int nip;
+  String nama;
+  String alamat;
+  String golongan;
+
+  Pegawai(this.nip, this.nama, this.alamat, this.golongan);
+}
+
+void main() {
+  Pegawai pegawai1 = Pegawai(12345, "Budi", "Jakarta", "Abdi Negara");
+
+  print("NIP: ${pegawai1.nip}");
+  print("Nama: ${pegawai1.nama}");
+  print("Alamat: ${pegawai1.alamat}");
+  print("Golongan: ${pegawai1.golongan}");
+}
