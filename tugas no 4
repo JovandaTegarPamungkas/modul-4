@@ -1,0 +1,61 @@
+import 'dart:io';
+
+class Pegawai {
+  int nip;
+  String nama;
+
+  Pegawai(this.nip, this.nama);
+}
+
+int linearSearch(List<Pegawai> list, int nip) {
+  for (int i = 0; i < list.length; i++) {
+    if (list[i].nip == nip) return i;
+  }
+  return -1;
+}
+
+void insertBefore(List<Pegawai> list, int index, Pegawai pegawai) {
+  if (index >= 0) list.insert(index, pegawai);
+}
+
+void insertAfter(List<Pegawai> list, int index, Pegawai pegawai) {
+  if (index >= 0 && index < list.length) list.insert(index + 1, pegawai);
+}
+
+void deleteData(List<Pegawai> list, int index) {
+  if (index >= 0 && index < list.length) list.removeAt(index);
+}
+
+void main() {
+  List<Pegawai> pegawaiList = [
+    Pegawai(12345, "Budi"),
+    Pegawai(67890, "Ani"),
+    Pegawai(11111, "Dewi"),
+  ];
+
+  print("Masukkan NIP yang ingin dicari:");
+  int nip = int.parse(stdin.readLineSync()!);
+
+  int index = linearSearch(pegawaiList, nip);
+
+  if (index != -1) {
+    print("Ditemukan: ${pegawaiList[index].nama}");
+    
+    print("Apakah ingin menyisipkan data sebelum data ini? (y/n)");
+    if (stdin.readLineSync()!.toLowerCase() == 'y') {
+      insertBefore(pegawaiList, index, Pegawai(22222, "Siti"));
+    }
+    
+    print("Apakah ingin menyisipkan data setelah data ini? (y/n)");
+    if (stdin.readLineSync()!.toLowerCase() == 'y') {
+      insertAfter(pegawaiList, index, Pegawai(33333, "Rudi"));
+    }
+    
+    print("Apakah ingin menghapus data ini? (y/n)");
+    if (stdin.readLineSync()!.toLowerCase() == 'y') {
+      deleteData(pegawaiList, index);
+    }
+  } else {
+    print("Data tidak ditemukan");
+  }
+}
